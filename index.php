@@ -5,9 +5,10 @@
 /* initialisation */
 
 session_start();
-
+//require("include/all.php");
 require("includes/db_connect.php");
 require("includes/functions.php");
+require("model/Article.php");
 
 $page = (isset($_GET['page']) ? $_GET['page'] : "article_list");
 
