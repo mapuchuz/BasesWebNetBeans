@@ -13,3 +13,16 @@
 	- <a href="index.php?page=article_delete&id=<?php echo $article['id']; ?>">delete</a>
 </li>
 -->
+
+
+<!--
+<article id="<?php echo $article['id']; ?>">
+	<h1><?php echo $article['title']; ?></h1>
+	<p><?php echo nl2br($article['content']); ?></p>
+</article>
+-->
+
+	<p>Titre : <?php echo $article['title']; ?></p>
+
+        
+        

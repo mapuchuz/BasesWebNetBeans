@@ -17,16 +17,11 @@ if ($article = $statement->fetch()) {
 ?>
 <h2>Lecture d'un article</h2>
 
-<!--
-<article id="<?php echo $article['id']; ?>">
-	<h1><?php echo $article['title']; ?></h1>
-	<p><?php echo nl2br($article['content']); ?></p>
-</article>
--->
+
 
 <article id="<?php echo $article->id; ?> ">
-	<h1><?php echo $article->title; ?></h1>
-	<p><?php echo nl2br($article->content); ?></p>
+	<h1><?php echo $article->getTitle(); ?></h1>
+	<p><?php echo nl2br($article->getContent()); ?></p>
 </article>
 
 <?php 
