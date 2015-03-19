@@ -1,6 +1,7 @@
 <?php 
 // on forge la requete SQL
-$sql = "SELECT * FROM article";
+/*
+ $sql = "SELECT * FROM article";
 
 // on passe la requete SQL à PDO
 $statement = $db->query($sql);
@@ -9,7 +10,10 @@ $statement = $db->query($sql);
 // si on a un article on l'affiche
 $statement->setFetchMode(PDO::FETCH_CLASS, "Article");
 if ($articles = $statement->fetchAll()) {
-	$nbRows = count($articles);
+*/	
+    $articles=  $articlerepository->getAll();
+ if($articles!=null) {
+    $nbRows = count($articles);
 
 // on affiche l'article 
 ?>

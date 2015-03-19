@@ -23,7 +23,8 @@ class ArticleRepository {
     public function __construct($db) {
         $this->db=  $db;
     }
-    function get($id) {
+
+    public function get($id) {
         // on forge la requete SQL
         $sql = "SELECT * FROM article WHERE id=".$id;
 
@@ -37,4 +38,20 @@ class ArticleRepository {
     
         return $article;
     }
+    
+    public function getAll() {
+        // on forge la requete SQL
+        $sql = "SELECT * FROM article";
+
+        // on passe la requete SQL à PDO
+        $statement = $this->db->query($sql);
+
+        // on récupère le premier (et unique) résultat de la requete
+        // si on a un article on l'affiche
+        $statement->setFetchMode(PDO::FETCH_CLASS, "Article");
+ 
+        return $statement->fetchAll();
+    }
+    
+    
 }
