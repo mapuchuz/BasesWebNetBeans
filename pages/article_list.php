@@ -1,17 +1,7 @@
 <?php 
-// on forge la requete SQL
-/*
- $sql = "SELECT * FROM article";
-
-// on passe la requete SQL à PDO
-$statement = $db->query($sql);
-
-// on récupère le premier (et unique) résultat de la requete
-// si on a un article on l'affiche
-$statement->setFetchMode(PDO::FETCH_CLASS, "Article");
-if ($articles = $statement->fetchAll()) {
-*/	
+    // on demande tous les articles
     $articles=  $articlerepository->getAll();
+    
  if($articles!=null) {
     $nbRows = count($articles);
 
@@ -37,6 +27,5 @@ if ($articles = $statement->fetchAll()) {
 } else {
 	echo "<h2>Aucun article avec cet identifiant.</h2>";
 }
-
 ?>
 <p><a href="index.php?page=article_add">Ajouter un article</a></p>

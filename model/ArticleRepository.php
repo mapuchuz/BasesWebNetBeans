@@ -53,5 +53,37 @@ class ArticleRepository {
         return $statement->fetchAll();
     }
     
+    public function delete($id) {
+        	// si on a un id (GET ou POST), on déclenche la suppression
+	$sql = "DELETE FROM article WHERE id=".$id;
+
+	// requete préparée PDO
+	return $this->db->exec($sql);
+    }
+    
+    /**
+     * ajoute un article dans dB
+     * si $article->iid<=0 , il y a création de nouveau article
+     * @param type $article
+     * @return type
+     */
+    public function addOrUpdate(Article $article) {
+       	// si on a un id (GET ou POST), on fait une mise à jour
+	$id=    $article->id;
+        if ($id>0)
+		$sql = "UPDATE article SET title=:title, content=:content WHERE id=".$id;
+	// sinon on insère un nouvel enregistrement
+	else
+		$sql = "INSERT INTO article (title, content) VALUES (:title, :content)";
+
+	// requete préparée PDO
+	$statement = $this->db->prepare($sql);
+	$statement->bindParam(":title",    $article->getTitle());
+	$statement->bindParam(":content",  $article->getContent());
+
+	return $statement->execute();	
+    }
+
+    
     
 }

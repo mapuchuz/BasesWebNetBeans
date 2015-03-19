@@ -10,13 +10,7 @@ if (isset($_POST['confirmer'])) {
 	if (isset($_POST['id'])&&$_POST['id']>0)
 		$id = (int)$_POST['id'];
 
-	// si on a un id (GET ou POST), on déclenche la suppression
-	$sql = "DELETE FROM article WHERE id=".$id;
-
-
-	// requete préparée PDO
-	$result = $db->exec($sql);
-
+        $result=    $articlerepository->delete($id);
 	// on valide et on redirige
 	addMessageRedirect(0,"valid",$result . " article a été supprimé.");
 }
@@ -29,13 +23,9 @@ else if (isset($_POST['annuler'])) {
 // si on est jusqu'ici, il n'y a pas eu de redirection
 // il faut donc générer un formulaire
 // mais d'abord, regardons si on a un article correspondant à l'identifiant demandé
-if ($id>0) {
-	$sql = "SELECT * FROM article WHERE id=".$id;
-	$statement = $db->query($sql);
-
-        $statement->setFetchMode(PDO::FETCH_CLASS, "Article");    
-	if ($article = $statement->fetch()) {
-		// notre article est pret à etre utilisé
+if ($id>0) {    
+        $article=   $articlerepository->get($id);
+        if ($article!=null) {
 	} else {
 		addMessageRedirect(0,"error","Aucun article trouvé avec cet identifiant.");
 	}

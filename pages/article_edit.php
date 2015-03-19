@@ -10,20 +10,10 @@ if (isset($_POST['submit'])) {
 	if (isset($_POST['id'])&&$_POST['id']>0)
 		$id = (int)$_POST['id'];
 
-	// si on a un id (GET ou POST), on fait une mise à jour
-	if ($id>0)
-		$sql = "UPDATE article SET title=:title, content=:content WHERE id=".$id;
-	// sinon on insère un nouvel enregistrement
-	else
-		$sql = "INSERT INTO article (title, content) VALUES (:title, :content)";
-
-	// requete préparée PDO
-	$statement = $db->prepare($sql);
-	$statement->bindParam(":title", $_POST['title']);
-	$statement->bindParam(":content", $_POST['content']);
-
-	$result = $statement->execute();	
-
+        $article=   new Article();
+        $article->renseigner($id, $_POST['title'], $_POST['content']);
+        $articlerepository->addOrUpdate($article);
+  
 	// on valide et on redirige
 	addMessageRedirect(0,"valid","Votre article a bien été inséré");
 
@@ -33,11 +23,8 @@ if (isset($_POST['submit'])) {
 // il faut donc générer un formulaire
 // mais d'abord, regardons si on a un article correspondant à l'identifiant demandé
 if ($id>0) {
-	$sql = "SELECT * FROM article WHERE id=".$id;
-	$statement = $db->query($sql);
-
-        $statement->setFetchMode(PDO::FETCH_CLASS, "Article");
-	if ($article = $statement->fetch()) {
+        $article=   $articlerepository->get($id);
+	if ($article!=null) {
 		// notre article est pret à etre utilisé
 	} else {
 		addMessageRedirect(0,"error","Aucun article trouvé avec cet identifiant.");

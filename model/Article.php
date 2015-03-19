@@ -33,5 +33,18 @@ class Article {
         echo $this->title . "," . $this->content . "<br />";
     }
     
+    /**
+     * remplit les champs de Article avec les arguments données
+     * 
+     * @param type $id
+     * @param type $title
+     * @param type $content
+     */
+    public function renseigner($id, $title, $content) {
+        $this->id=       $id;
+        $this->title=    $title;
+        $this->content=  $content;
+    }
+    
     
 }
