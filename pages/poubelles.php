@@ -25,4 +25,19 @@
 	<p>Titre : <?php echo $article['title']; ?></p>
 
         
-        
+        	<label>Title :<input type="text" name="title" value="<?php echo ($id>0 ? $article['title'] : ""); ?>" /></label>
+	<label>Content:
+		<textarea name="content"><?php echo ($id>0 ? $article['content'] : ""); ?></textarea>
+	</label>
+
+                
+                // on forge la requete SQL
+$sql = "SELECT * FROM article WHERE id=".$id;
+
+// on passe la requete SQL à PDO
+$statement = $db->query($sql);
+
+// on récupère le premier (et unique) résultat de la requete
+// si on a un article on l'affiche
+$statement->setFetchMode(PDO::FETCH_CLASS, "Article");
+if ($article = $statement->fetch()) {

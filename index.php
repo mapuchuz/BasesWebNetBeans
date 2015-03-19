@@ -9,6 +9,9 @@ session_start();
 require("includes/db_connect.php");
 require("includes/functions.php");
 require("model/Article.php");
+require("model/ArticleRepository.php");
+
+$articlerepository= new ArticleRepository( $db );
 
 $page = (isset($_GET['page']) ? $_GET['page'] : "article_list");
 
