@@ -49,7 +49,7 @@ class ArticleController {
         // on récupère l'id de l'article à travers la var GET
         $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
-        $article=   $repo->get( $id );
+        $article=   $this->repo->get( $id );
         $html=  '';
         if($article!=null) {
             // on affiche l'article 
@@ -62,5 +62,6 @@ class ArticleController {
         } else {
                 $html.= '<h2>Aucun article avec cet identifiant.</h2>';
         }
+        return $html;
     }
 }

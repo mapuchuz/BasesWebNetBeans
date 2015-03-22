@@ -25,14 +25,13 @@ switch ($page) {
         break;
     case "article_read":
         $titre = "Lecture d'un article";
-        $pageInclue = "pages/article_read.php";
+        $pageInclue=    'DEPRECATED';
+        $html=  $articleControl->readAction();
         break;
     case "article_list":
         $titre = "Liste des articles";
-        $html=  $articleControl->listAction();
         $pageInclue=    'DEPRECATED';
-//        $pageInclue = "pages/article_list.php";
-//        echo $articleControl->listAction();
+        $html=  $articleControl->listAction();
         break;
     case "article_add":
     case "article_edit":
