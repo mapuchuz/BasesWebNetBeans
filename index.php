@@ -3,22 +3,17 @@
 //print_r($_SERVER);
 
 /* initialisation */
+require("includes/all.php");
 
-session_start();
-//require("include/all.php");
-require("includes/db_connect.php");
-require("includes/functions.php");
-require("model/Article.php");
-require("model/ArticleRepository.php");
-
-$articlerepository= new ArticleRepository( $db );
+$articlerepository= new ArticleRepository($db);
+$articleControl=    new ArticleController($articlerepository);
 
 $page = (isset($_GET['page']) ? $_GET['page'] : "article_list");
 
 /* analyse de la page demandée et création des variables */
 
 $montrerHtml = true;
-
+$html=  '';
 switch ($page) {
     case "register":
         $titre = "Formulaire d'enregistrement";
@@ -34,7 +29,10 @@ switch ($page) {
         break;
     case "article_list":
         $titre = "Liste des articles";
-        $pageInclue = "pages/article_list.php";
+        $html=  $articleControl->listAction();
+        $pageInclue=    'DEPRECATED';
+//        $pageInclue = "pages/article_list.php";
+//        echo $articleControl->listAction();
         break;
     case "article_add":
     case "article_edit":
@@ -66,7 +64,10 @@ if ($montrerHtml) {
     showMessages();
 
     // on affiche le contenu principal de la page
-    include($pageInclue);
+    if($pageInclue!="DEPRECATED") 
+        include($pageInclue);
+    else        
+        echo $html;
 
     /* fin corps de page */
 

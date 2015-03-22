@@ -1,12 +1,8 @@
 <?php
 session_start();
-include("functions/functions.php");
-include("blocs/header.php");
-include("blocs/footer.php");
-include("model/Article.php");
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+//require("include/all.php");
+require("includes/db_connect.php");
+require("includes/functions.php");
+require("model/Article.php");
+require("model/ArticleRepository.php");
+require("pages/ArticleController.php");

@@ -35,7 +35,7 @@ class Article {
     
     /**
      * remplit les champs de Article avec les arguments données
-     * 
+     * w
      * @param type $id
      * @param type $title
      * @param type $content
