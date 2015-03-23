@@ -6,7 +6,6 @@
 require("includes/all.php");
 
 $articlerepository= new ArticleRepository($db);
-$articleControl=    new ArticleController($articlerepository);
 
 $page = (isset($_GET['page']) ? $_GET['page'] : "article_list");
 
@@ -14,6 +13,26 @@ $page = (isset($_GET['page']) ? $_GET['page'] : "article_list");
 
 $montrerHtml = true;
 $html=  '';
+
+
+$control= strtok($page, "_");
+if($control=="article")
+    $control=   "Article";
+$action= strtok("_");
+
+if($control!="") {
+    $control.=      "Controller";
+    $controller= new $control($articlerepository);
+
+    if($action!="") {
+        $action.= "Action";
+        if( method_exists($controller, $action) ) {
+            $pageInclue=    'DEPRECATED';
+            $html=  $controller->$action();
+        }
+    }
+}
+/*
 switch ($page) {
     case "register":
         $titre = "Formulaire d'enregistrement";
@@ -36,11 +55,13 @@ switch ($page) {
     case "article_add":
     case "article_edit":
         $titre = "Ajout/édition d'un article";
-        $pageInclue = "pages/article_edit.php";
+        $pageInclue=    'DEPRECATED';
+        $html=  $articleControl->editAction();
         break;
     case "article_delete":
         $titre = "Suppression d'un article";
-        $pageInclue = "pages/article_delete.php";
+        $pageInclue=    'DEPRECATED';
+        $html=  $articleControl->deleteAction();
         break;
     case "home":
     default:
@@ -48,7 +69,7 @@ switch ($page) {
         $pageInclue = "pages/home.php";
         break;
 }
-
+*/
 // si cette page a un affichage graphique, tout inclure, sinon juste un script
 if ($montrerHtml) {
     // le header contient le début de la page jusqu'à la balise <body>
