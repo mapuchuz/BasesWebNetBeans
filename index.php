@@ -18,7 +18,7 @@ $articlerepository= new $repositoryName($db);
 /* analyse de la page demandée et création des variables */
 $montrerHtml = true;
 $html=  '';
-
+$titre= $control . " - " . $action;
 if($control!="") {
     $controlName=   $control . "Controller";
     //inclusion dynamique

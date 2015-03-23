@@ -4,6 +4,7 @@ if ($articles) {
 
 // on affiche l'article 
     ?>
+
     <h2>Liste des articles (<?php echo (int) $nbRows; ?>)</h2>
     <ul>
         <?php foreach ($articles as $article) { ?>

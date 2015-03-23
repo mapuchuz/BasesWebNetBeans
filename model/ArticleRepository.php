@@ -11,6 +11,8 @@
  *
  * @author vd
  */
+require("model/Article.php");
+
 class ArticleRepository {
     /**
      * return a BO Article
