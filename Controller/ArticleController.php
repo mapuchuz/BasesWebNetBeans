@@ -1,15 +1,10 @@
 <?php
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
  * Description of ArticleController
  *
- * @author hb
+ * @author vd
  */
 class ArticleController {
 
@@ -45,13 +40,7 @@ class ArticleController {
      * 
      * @return string
      */
-    /*
-     * PROBLEME 1:  Le Form action="index.php?page=article_delete"
-     *              comment se débarrasse de article_delete.php ? 
-     * PROBLEME 2:  Je peux afficher un SEUL  
-     *              des boutons Confirmer et Annuler
-     *              c'est le dernier dans le code qui est affiché
-     */
+  
     public function deleteAction() {
         // on regarde si un ID a été fourni
         $id = isset($_GET['id']) ? (int) $_GET['id'] : 0;

@@ -39,7 +39,7 @@ class Application {
         
         $controlName=   $control . "Controller";
         //inclusion dynamique
-        require("pages/" . $controlName . ".php");
+        require("controller/" . $controlName . ".php");
         //instantiation dynamique
         $controller= new $controlName($articlerepository);
             
@@ -53,10 +53,10 @@ class Application {
     public function renderResponse() {
         // le header contient le début de la page jusqu'à la balise <body>
         $titre= $this->title;
-        include("blocs/header.php");
+        include("templates/header.php");
 
         // le menu est composé de la balise <nav> et de ses items
-        include("blocs/menu.php");
+        include("templates/menu.php");
 
         /* début corps de page */
 
@@ -69,7 +69,7 @@ class Application {
         /* fin corps de page */
 
         // on affiche le footer et on ferme la page html
-        include("blocs/footer.php");
+        include("templates/footer.php");
 
     }
 }
