@@ -3,7 +3,7 @@
 <!-- supprimer un article  -->
 <h2>Confirmer la suppression</h2>
 
-<form method="post" action="index.php?page=article_delete">
+<form method="post" action="index.php?control=article&action=delete">
 	<p><strong>Voulez-vous confirmer la suppression de l'article <?php echo $id; ?> ?<strong></p>
 	<p>Titre : <?php echo $article->getTitle(); ?></p>
         <input type="hidden" name="id" value="<?php echo $id; ?>" />

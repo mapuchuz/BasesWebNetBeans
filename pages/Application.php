@@ -24,12 +24,10 @@ class Application {
      * interprète les demandes de l'utilisateur
      */
     public function handleRequest() {
-        $page = (isset($_GET['page']) ? $_GET['page'] : "article_list");
-
-        $control=   ucfirst(strtolower(strtok($page, "_")));
-
-        $action= strtok("_");
-
+        $control= (isset($_GET['control']) ? $_GET['control'] : "article");
+        $control=   ucfirst(strtolower($control));
+        $action= (isset($_GET['action']) ? $_GET['action'] : "list");
+ 
         $repositoryName=   $control . "Repository"; 
         //inclusion dynamique du Repository
         require("model/" . $repositoryName . ".php");
@@ -38,17 +36,12 @@ class Application {
 
         /* analyse de la page demandée et création des variables */
         $this->title= $control . " - " . $action;
-        if($control=="")
-            $control=   "Article";
         
         $controlName=   $control . "Controller";
         //inclusion dynamique
         require("pages/" . $controlName . ".php");
         //instantiation dynamique
         $controller= new $controlName($articlerepository);
-
-        if($action=="") 
-            $action=    "list";
             
         $action.= "Action";
         if( method_exists($controller, $action) ) {
