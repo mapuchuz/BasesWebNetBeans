@@ -1,7 +1,13 @@
 <?php
+    require("includes/all.php");
+    
+    $app=   new Application($db);
+    $app->handleRequest();
+    $app->renderResponse();
 
-/* initialisation */
-require("includes/all.php");
+/*
+// initialisation 
+//require("includes/all.php");
 $page = (isset($_GET['page']) ? $_GET['page'] : "article_list");
 
 $control= strtok($page, "_");
@@ -15,7 +21,7 @@ require("model/" . $control . "Repository.php");
 $repositoryName= $control . "Repository"; 
 $articlerepository= new $repositoryName($db);
 
-/* analyse de la page demandée et création des variables */
+// analyse de la page demandée et création des variables 
 $montrerHtml = true;
 $html=  '';
 $titre= $control . " - " . $action;
@@ -43,7 +49,7 @@ if ($montrerHtml) {
     // le menu est composé de la balise <nav> et de ses items
     include("blocs/menu.php");
 
-    /* début corps de page */
+    // début corps de page 
 
     // on affiche les messages éventuels
     showMessages();
@@ -54,7 +60,7 @@ if ($montrerHtml) {
     else        
         echo $html;
 
-    /* fin corps de page */
+    // fin corps de page 
 
     // on affiche le footer et on ferme la page html
     include("blocs/footer.php");
@@ -62,3 +68,7 @@ if ($montrerHtml) {
     // on inclut le script demandé
     include($pageInclue);
 }
+ * 
+ */
+
+
