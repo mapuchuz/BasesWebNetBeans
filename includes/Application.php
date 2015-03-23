@@ -27,7 +27,8 @@ class Application {
         $control= (isset($_GET['control']) ? $_GET['control'] : "article");
         $control=   ucfirst(strtolower($control));
         $action= (isset($_GET['action']) ? $_GET['action'] : "list");
- 
+        $action= strtolower($action);
+                
         $repositoryName=   $control . "Repository"; 
         //inclusion dynamique du Repository
         require("model/" . $repositoryName . ".php");
